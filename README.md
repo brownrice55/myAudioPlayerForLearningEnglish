@@ -27,9 +27,9 @@
 |<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/c361685c-0763-4188-a941-0539c173f081" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/fc454de9-f228-46c6-99a2-c10b347bd5c5" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/bf609d97-9647-4aa1-9ccd-ea044c373a71" width="200">|
 
 
-| 再生※1 | メニュー |
-| ---- | ---- |
-|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/f5ddb0f4-d3cd-4b37-be3e-1a8c1ea4d883" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/7edc37e5-ccce-48f3-be2e-890d5a32940a" width="200">|
+| 再生※1 | メニュー | 再生※3 |
+| ---- | ---- | ---- |
+|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/f5ddb0f4-d3cd-4b37-be3e-1a8c1ea4d883" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/7edc37e5-ccce-48f3-be2e-890d5a32940a" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/1eb77df0-2a23-4b07-8aed-1612b804ece6" width="200">|
 
 
 | 再生設定 | 再生設定 追加※2 | 再生設定 編集※2 |
@@ -43,7 +43,7 @@
 
 <p>※1.再生画面のプルダウンメニューの一番下にそれぞれ「新しいパスを追加する」「新しい設定を追加する」を入れる</p>
 <p>※2.追加・編集はオーバーレイ表示。アラートは、インプットエリアの直前に表示（初期画面2,3も同様）</p>
-
+<p>※3.再生画面で、「合格」「もう1回」で音声を振り分ける機能を追加（詳細は後日追記予定）</p>
 
 ## flowchart
 <p><img width="606" src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/5a50c1ee-15eb-43a9-8f8c-df903c172716"></p>
