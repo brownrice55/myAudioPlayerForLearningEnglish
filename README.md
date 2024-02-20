@@ -24,26 +24,29 @@
 ## wireframe
 | 初期設定1 | 初期設定2 | 初期設定3 |
 | ---- | ---- | ---- |
-|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/c361685c-0763-4188-a941-0539c173f081" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/fc454de9-f228-46c6-99a2-c10b347bd5c5" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/ffbb4e09-ba9b-4f64-8a1a-abbaf0e13326" width="200">|
+|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/c361685c-0763-4188-a941-0539c173f081" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/fc454de9-f228-46c6-99a2-c10b347bd5c5" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/bf609d97-9647-4aa1-9ccd-ea044c373a71" width="200">|
 
 
-| 再生 | メニュー |
+| 再生※1 | メニュー |
 | ---- | ---- |
-|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/f5ddb0f4-d3cd-4b37-be3e-1a8c1ea4d883" width="200"><br><p>プルダウンメニューの一番下にそれぞれ「新しいパスを追加する」「新しい設定を追加する」を入れる</p>|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/7edc37e5-ccce-48f3-be2e-890d5a32940a" width="200">|
+|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/f5ddb0f4-d3cd-4b37-be3e-1a8c1ea4d883" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/7edc37e5-ccce-48f3-be2e-890d5a32940a" width="200">|
 
 
-| 再生設定 | 再生設定 追加 | 再生設定 編集 |
+| 再生設定 | 再生設定 追加※2 | 再生設定 編集※2 |
 | ---- | ---- | ---- |
-|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/4e3cfa3e-3c9d-4fd9-850e-5822f5cd7c99" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/c59cf892-8ccc-432e-9c08-bf9181ac28f1" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/299aeecb-c682-4e4e-bbf0-a2f13e6335fb" width="200">|
+|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/4e3cfa3e-3c9d-4fd9-850e-5822f5cd7c99" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/a99890f5-97eb-4486-8dd7-d0f2293f219a" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/1b6eee36-1787-4f5a-a28c-76277b717397" width="200">|
 
 
-| パス設定 | パス設定 追加 | パス設定 編集 |
+| パス設定 | パス設定 追加※2 | パス設定 編集※2 |
 | ---- | ---- | ---- |
-|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/42eec354-7427-44fe-baeb-a8f003a49e13" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/ee46499c-3419-42e8-bea9-6f82b9a757d3" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/3cf2bba5-bdb2-4f75-97c8-2e2d4c5f7fe8" width="200">|
+|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/42eec354-7427-44fe-baeb-a8f003a49e13" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/ffdab11a-f627-4b77-bbd1-03bcf9990a33" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/1b3093eb-54a1-481e-9c91-f254ae877253" width="200">|
 
+<p>※1.再生画面のプルダウンメニューの一番下にそれぞれ「新しいパスを追加する」「新しい設定を追加する」を入れる</p>
+<p>※2.追加・編集はオーバーレイ表示。アラートは、インプットエリアの直前に表示（初期画面2,3も同様）</p>
 
 
 ## flowchart
+<p><img width="606" src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/5a50c1ee-15eb-43a9-8f8c-df903c172716"></p>
 
 
 ## technologies
