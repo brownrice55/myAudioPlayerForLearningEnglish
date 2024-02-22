@@ -23,11 +23,11 @@
 <p>The other purposes of creating this program are to refresh my programming skills and to become familiar with Figma.</p>
 <p>他の目的は、プログラミングを思い出すことと、Figmaに慣れることです。</p>
 
-<p>蛇足ですが、人によって異なる部分もあるかと思いますが、英語のテスト勉強などは、1冊（または少数）の参考書を何度も解くことが大事だと個人的には思っています。</p>
+<p>蛇足ですが、人によって異なる部分もあるかと思いますが、英語のテスト勉強などは、良い参考書を1冊（または少数）、何度も解くことが大事だと個人的には思っています。</p>
 
-<p>繰り返し解く、わからない部分を精読する、次は時間を計って解く、付属の音声で音読する、シャドーイングする、ディクテーションする、と、１冊で様々な形で勉強できます。</p>
+<p>繰り返し解く、わからない部分を精読する、次は時間を計って解く、付属の音声を流して、音声を真似しながら音読する、シャドーイングする、ディクテーションする、と、１冊で様々な形で勉強できます。</p>
 
-<p>また、書くまでも無いことですが、参考書も付属の音声もフリー素材ではありませんので、配布したり、素材として動画を作成してアップロードしたりするようなことは、（著作者や出版社などの特段の許可がない限り）法律に触れる行為だと思いますので、取り扱いに注意して、購入した参考書に限り、個人で大切に活用されてください。</p>
+<p>また、書くまでも無いことですが、参考書も付属の音声もフリー素材ではありませんので、配布したり、素材として動画を作成してアップロードしたりするようなことは、（著作者や出版社などの特段の許可がない限り）法に触れる行為だと思いますので、取り扱いに注意して、購入した参考書に限り、個人で大切に活用されてください。</p>
 
 ## wireframe
 | 初期設定1 | 初期設定2 | 初期設定3 |
@@ -42,7 +42,7 @@
 
 | 履歴から再生 | 他の履歴を選択 |
 | ---- | ---- |
-|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/c3a32dd7-526e-4e88-a706-e6e8cd6c21c8" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/c6e7fc6f-39bb-4318-9c53-2d395d1c1c58" width="200">|
+|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/864efc27-8b72-447c-aa0c-8025741e1583" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/c6e7fc6f-39bb-4318-9c53-2d395d1c1c58" width="200">|
 
 
 | 再生設定 | 再生設定 追加※2 | 再生設定 編集※2 |
