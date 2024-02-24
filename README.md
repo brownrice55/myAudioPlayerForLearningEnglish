@@ -23,7 +23,7 @@
 <p>The other purposes of creating this program are to refresh my programming skills and to become familiar with Figma.</p>
 <p>他の目的は、プログラミングを思い出すことと、Figmaに慣れることです。</p>
 
-<p>蛇足ですが、人によって異なる部分もあるかと思いますが、英語のテスト勉強などは、良い参考書を1冊（または少数）、何度も解くことが大事だと個人的には思っています。</p>
+<p>蛇足ですが、人によって異なる部分もあるかと思いますが、英語のテスト勉強などは、良い参考書を1冊（または数冊）、何度も解くことが大事だと個人的には思っています。</p>
 
 <p>繰り返し解く、わからない部分を精読する、次は時間を計って解く、付属の音声を流して、音声を真似しながら音読する、シャドーイングする、ディクテーションする、と、１冊で様々な形で勉強できます。</p>
 
@@ -47,7 +47,7 @@
 
 | 再生設定 | 再生設定 追加※2 | 再生設定 編集※2 |
 | ---- | ---- | ---- |
-|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/4e3cfa3e-3c9d-4fd9-850e-5822f5cd7c99" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/a99890f5-97eb-4486-8dd7-d0f2293f219a" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/1b6eee36-1787-4f5a-a28c-76277b717397" width="200">|
+|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/4e3cfa3e-3c9d-4fd9-850e-5822f5cd7c99" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/a99890f5-97eb-4486-8dd7-d0f2293f219a" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/d35a94f5-c3d7-4f2e-b976-3d9ef1a17c32" width="200">|
 
 
 | パス設定 | パス設定 追加※2 | パス設定 編集※2 |
