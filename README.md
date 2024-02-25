@@ -30,37 +30,46 @@
 <p>また、書くまでも無いことですが、参考書も付属の音声もフリー素材ではありませんので、配布したり、素材として動画を作成してアップロードしたりするようなことは、（著作者や出版社などの特段の許可がない限り）法に触れる行為だと思いますので、取り扱いに注意して、購入した参考書に限り、個人で大切に活用されてください。</p>
 
 ## wireframe
-| 初期設定1 | 初期設定2 | 初期設定3 |
+| 初期設定1 | 初期設定2※1 | 初期設定3 |
 | ---- | ---- | ---- |
-|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/c361685c-0763-4188-a941-0539c173f081" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/fc454de9-f228-46c6-99a2-c10b347bd5c5" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/bf609d97-9647-4aa1-9ccd-ea044c373a71" width="200">|
+|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/c361685c-0763-4188-a941-0539c173f081" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/fc454de9-f228-46c6-99a2-c10b347bd5c5" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/c09f9a4d-70a5-44bc-ae1d-d7c7882fd49d" width="200">|
 
 
-| 再生※1 | メニュー |
-| ---- | ---- |
-|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/07629206-6b04-4149-892d-7e627231b93d" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/2ff0589a-724e-474a-910e-7a225897474d" width="200">|
+| 再生※2 | 休止設定※3 | メニュー |
+| ---- | ---- | ---- |
+|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/e51068fb-9e01-46da-997d-a7c2cf3ddb90" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/a7c142bc-f14d-4784-9bff-803fe5dd93bf" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/cb9e5a3d-3b57-44ae-ab19-1f67410cb88b" width="200">|
 
 
 | 履歴から再生 | 他の履歴を選択 |
 | ---- | ---- |
-|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/864efc27-8b72-447c-aa0c-8025741e1583" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/c6e7fc6f-39bb-4318-9c53-2d395d1c1c58" width="200">|
+|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/4d721a24-cc3f-4e3d-ae99-f6c05e19c14b" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/c6e7fc6f-39bb-4318-9c53-2d395d1c1c58" width="200">|
 
 
-| 再生設定 | 再生設定 追加※2 | 再生設定 編集※2 |
+| 再生設定 | 再生設定 追加※4 | 再生設定 編集※4 |
 | ---- | ---- | ---- |
-|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/4e3cfa3e-3c9d-4fd9-850e-5822f5cd7c99" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/a99890f5-97eb-4486-8dd7-d0f2293f219a" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/d35a94f5-c3d7-4f2e-b976-3d9ef1a17c32" width="200">|
+|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/4e3cfa3e-3c9d-4fd9-850e-5822f5cd7c99" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/81d77148-31b5-4b0c-831c-7ce00d04df1c" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/e2687a1c-de2e-4bb0-b1ca-be6b7881e376" width="200">|
 
 
-| パス設定 | パス設定 追加※2 | パス設定 編集※2 |
+| パス設定 | パス設定 追加※4 | パス設定 編集※4 |
 | ---- | ---- | ---- |
-|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/42eec354-7427-44fe-baeb-a8f003a49e13" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/ffdab11a-f627-4b77-bbd1-03bcf9990a33" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/1b3093eb-54a1-481e-9c91-f254ae877253" width="200">|
+|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/42eec354-7427-44fe-baeb-a8f003a49e13" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/fb0ae525-2e17-49a2-a67c-770d973eb74a" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/9745f535-f173-420d-a6bd-d795c8ddfca9" width="200">|
 
-<p>※1.再生画面のプルダウンメニューの一番下にそれぞれ「新しいパスを追加する」「新しい設定を追加する」を入れる</p>
-<p>※2.追加・編集はオーバーレイ表示（履歴も同様）。アラートは、インプットエリアの直前に表示（初期設定2、3も同様）</p>
+<p>※1.休止設定は初期設定ではデフォルト値を入れる</p>
+<p>※2.再生画面のプルダウンメニューの一番下にそれぞれ「新しいパスを追加する」「新しい設定を追加する」を入れる</p>
+<p>※3.休止設定を開くために、再生画面の休止設定のプルダウンメニューの一番下の「休止設定を設定する」を入れる（全体の基本設定のようなものを別途追加するか少し検討する）</p>
+<p>※4.追加・編集はオーバーレイ表示（履歴、休止設定も同様）。アラートは、インプットエリアの直前に表示（初期設定2、3も同様）</p>
 
 
 ## flowchart
-<p><img width="606" src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/abaa1c0c-aaa9-4008-8c28-cd7319f488c3"></p>
-
+<p><img width="600" src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/9c4c313f-199b-4ed4-9b18-86c8ea0bf50a"></p>
+<p>保管するデータは下記になります。</p>
+<ul>
+<li>パス設定のデータ</li>
+<li>再生設定のデータ</li>
+<li>履歴のデータ</li>
+<li>休止設定のオプション（その他）のデータ</li>
+</ul>
+<p>履歴と休止設定のオプションのデータは1つにまとめるかもしれません。特に休止設定の辺りが私にはとても難しくなる可能性があるので、後で少し仕様変更する可能性があります。</p>
 
 ## technologies
 Vue.js, TypeScript, html, sass, css
