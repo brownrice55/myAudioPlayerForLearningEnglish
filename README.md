@@ -50,9 +50,9 @@
 |<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/4e3cfa3e-3c9d-4fd9-850e-5822f5cd7c99" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/81d77148-31b5-4b0c-831c-7ce00d04df1c" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/e2687a1c-de2e-4bb0-b1ca-be6b7881e376" width="200">|
 
 
-| パス設定 | パス設定 追加※4 | パス設定 編集※4 |
+| パス設定/休止設定 | パス/休止設定 追加※4 | パス/休止設定 編集※4 |
 | ---- | ---- | ---- |
-|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/42eec354-7427-44fe-baeb-a8f003a49e13" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/fb0ae525-2e17-49a2-a67c-770d973eb74a" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/9745f535-f173-420d-a6bd-d795c8ddfca9" width="200">|
+|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/ef3aece1-445d-4895-bf91-8a7297b996e2" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/c8fc04fd-07ef-45c3-ab6e-554543e25024" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/a79576f3-db0c-43ff-9b9c-de794dd5c2b1" width="200">|
 
 <p>※1.休止設定は初期設定ではデフォルト値を入れる</p>
 <p>※2.再生画面のプルダウンメニューの一番下にそれぞれ「新しいパスを追加する」「新しい設定を追加する」を入れる</p>
