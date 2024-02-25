@@ -37,12 +37,12 @@
 
 | 再生※2 | 休止設定※3 | メニュー |
 | ---- | ---- | ---- |
-|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/e51068fb-9e01-46da-997d-a7c2cf3ddb90" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/a7c142bc-f14d-4784-9bff-803fe5dd93bf" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/cb9e5a3d-3b57-44ae-ab19-1f67410cb88b" width="200">|
+|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/889224de-5d54-4251-975a-5b7caed86599" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/a7c142bc-f14d-4784-9bff-803fe5dd93bf" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/cb9e5a3d-3b57-44ae-ab19-1f67410cb88b" width="200">|
 
 
 | 履歴から再生 | 他の履歴を選択 |
 | ---- | ---- |
-|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/4d721a24-cc3f-4e3d-ae99-f6c05e19c14b" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/c6e7fc6f-39bb-4318-9c53-2d395d1c1c58" width="200">|
+|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/5efda3c5-b03a-41a2-9f9b-622259284742" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/c6e7fc6f-39bb-4318-9c53-2d395d1c1c58" width="200">|
 
 
 | 再生設定 | 再生設定 追加※4 | 再生設定 編集※4 |
@@ -63,14 +63,17 @@
 <p><img width="600" src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/cec90019-146a-4d98-90c9-2ce3526974a0"></p>
 <p>保管するデータは下記になります。</p>
 <ul>
-<li>パス設定のデータ</li>
+<li>パス設定と休止設定（一部）のデータ</li>
 <li>再生設定のデータ</li>
 <li>履歴のデータ</li>
 <li>休止設定のオプション（その他）のデータ</li>
 </ul>
+
+## notes
 <p>履歴と休止設定のオプションのデータは1つにまとめるかもしれません。特に休止設定の辺りが私にはとても難しくなる可能性があるので、後で少し仕様変更する可能性があります。</p>
 <p>デザインは少しする予定ですが、時間がかかるのと、今は実装したい気分なので、実装をしながら考えて、後でデザインして反映するようにしようと思います。一旦、実装をしながらCSSで体裁を整える程度に留めます。</p>
-
+<p>休止時間が長い場合は、「残り5秒」などのアラートを自動音声で読み上げる形等にするかどうか、少し検討します。</p>
+<p>履歴は、今のところ、再生設定とパス設定が同じものは1日に1つ、最新の履歴が残るようにするのが良いように思っているのですが、もう少し検討します。</p>
 
 ## technologies
 Vue.js, TypeScript, html, sass, css
