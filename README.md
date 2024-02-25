@@ -37,7 +37,7 @@
 
 | 再生※2 | 休止設定※3 | メニュー |
 | ---- | ---- | ---- |
-|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/889224de-5d54-4251-975a-5b7caed86599" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/a7c142bc-f14d-4784-9bff-803fe5dd93bf" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/cb9e5a3d-3b57-44ae-ab19-1f67410cb88b" width="200">|
+|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/889224de-5d54-4251-975a-5b7caed86599" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/5b27dd65-2a89-4f43-925d-25f7b89faf99" width="200">|<img src="https://github.com/brownrice55/myAudioPlayerForLearningEnglish/assets/113149599/cb9e5a3d-3b57-44ae-ab19-1f67410cb88b" width="200">|
 
 
 | 履歴から再生 | 他の履歴を選択 |
