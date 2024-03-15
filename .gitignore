@@ -29,8 +29,9 @@ coverage
 
 *.tsbuildinfo
 
-src/
+
 package.json
+package-lock.json
 .eslintrc.cjs
 .prettierrc.json
 env.d.ts
@@ -41,3 +42,6 @@ vite.config.ts
 .vscode/extensions.json
 tsconfig.app.json
 index.html
+
+main.ts
+src/assets/_destyle.css
