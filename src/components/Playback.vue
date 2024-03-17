@@ -1,10 +1,9 @@
 <script setup lang="ts">
   import {ref} from "vue";
-  import ModalPlaybackSettingsEdit from '/src/components/ModalPlaybackSettingsEdit.vue';
-  import ModalPlaybackSettingsAdd from '/src/components/ModalPlaybackSettingsAdd.vue';
-  import ModalPathSettingsAdd from '/src/components/ModalPathSettingsAdd.vue';
   import ModalPlaybackHistory from '/src/components/ModalPlaybackHistory.vue';
   import ModalPauseSettings from '/src/components/ModalPauseSettings.vue';
+  import CommonPathSettings from '/src/components/CommonPathSettings.vue';
+  import CommonPlaybackSettings from '/src/components/CommonPlaybackSettings.vue';
 
   const pageName = ref('playback');
   const pageNameFromSelect = ref('');
@@ -58,7 +57,7 @@
             <option value="add">パスを追加する</option>
           </select>
           <div v-if="isModalOpen && pageNameFromSelect==='path'" class="overlay">
-            <ModalPathSettingsAdd @closeModal="onCloseModal" />
+            <CommonPathSettings pageName="add" @closeModal="onCloseModal" />
           </div>
         </dd>
       </dl>
@@ -70,7 +69,7 @@
             <option value="add">再生設定を追加する</option>
           </select>
           <div v-if="isModalOpen && pageNameFromSelect==='playback'" class="overlay">
-            <ModalPlaybackSettingsAdd @closeModal="onCloseModal" />
+            <CommonPlaybackSettings pageName="add" @closeModal="onCloseModal" />
           </div>
         </dd>
       </dl>
@@ -97,7 +96,7 @@
           <button @click="onOpenModal()">編集</button>
         </div>
         <div v-if="isModalOpen && !pageNameFromSelect" class="overlay">
-          <ModalPlaybackSettingsEdit @closeModal="onCloseModal" />
+          <CommonPlaybackSettings pageName="edit" @closeModal="onCloseModal" />
         </div>
       </div>
       <div>

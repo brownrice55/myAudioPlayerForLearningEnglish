@@ -1,7 +1,6 @@
 <script setup lang="ts">
   import {ref} from "vue";
-  import ModalPlaybackSettingsEdit from '/src/components/ModalPlaybackSettingsEdit.vue';
-  import ModalPlaybackSettingsAdd from '/src/components/ModalPlaybackSettingsAdd.vue';
+  import CommonPlaybackSettings from '/src/components/CommonPlaybackSettings.vue';
 
   // ** modal
   const isModalOpen = ref(0);
@@ -19,7 +18,7 @@
 <template>
   <h1>再生設定</h1>
   <p>使用する設定を選択して、編集、または追加を押してください。</p>
-  <ul class="list">
+  <ul>
     <li>
       <input type="radio" id="radio1" name="radio_playbackSettings" checked>
       <label for="radio1">1-100 リピート3回 1倍速</label>
@@ -32,15 +31,17 @@
   <div class="button">
     <button @click="onOpenModal('edit')">編集</button>
     <div v-if="isModalOpen && modalName=='edit'" class="overlay">
-      <ModalPlaybackSettingsEdit @closeModal="onCloseModal" />
-    </div>   
+      <div>パス設定 編集</div>
+      <CommonPlaybackSettings pageName="edit" @closeModal="onCloseModal" />
+    </div>
     <button>削除</button>
   </div>
   <div class="button">
     <button @click="onOpenModal('add')">新規追加</button>
     <div v-if="isModalOpen && modalName=='add'" class="overlay">
-      <ModalPlaybackSettingsAdd @closeModal="onCloseModal" />
-    </div> 
+      <div>パス設定 新規追加</div>
+      <CommonPlaybackSettings pageName="add" @closeModal="onCloseModal" />
+    </div>
   </div>
 </template>
 

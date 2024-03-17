@@ -1,5 +1,7 @@
 <script setup lang="ts">
   import {ref} from "vue";
+  import CommonPathSettings from '/src/components/CommonPathSettings.vue';
+  import CommonPlaybackSettings from '/src/components/CommonPlaybackSettings.vue';
 
   //**data/
   //仮
@@ -23,72 +25,10 @@
       </div>
     </section>
     <section v-else-if="initialSettings===2">
-      <div>
-        <label for="">パス名</label>
-        <input type="text"><br>
-        例）黒色の参考書のパス
-        拡張子
-        <select name="" id="">
-          <option value=".mp3">.mp3</option>
-        </select>
-        フォルダ名
-        <input type="text">
-      </div>
-      <div>
-        ファイル名
-        連番の桁数 <input type="number">
-        連番の前後の文字列
-        <input type="text">
-        001
-        <input type="text">
-      </div>
-      <div>
-        data/001.mp3
-      </div>
-      <div>
-        <p>再生して、パスが合っているか確認する</p>
-      </div>
-      <div>
-        <video playsinline autoplay controls>
-          <source src="" type="video/mp4">
-        </video>        
-      </div>
-      <div class="button">
-        <button>次へ</button>
-      </div>    
+      <CommonPathSettings pageName="initial" />
     </section>
     <section v-else>
-      <div>
-        設定名
-        <input type="radio">自動
-        <input type="radio">カスタム
-      </div>
-      <div>
-        <div></div>
-        <div><input type="text"></div>
-      </div>
-      <div>
-        <input type="radio">開始番号と終了番号を指定
-        開始番号 <input type="number">
-        終了番号 <input type="number">
-        <input type="radio"> 音声ファイルの番号を指定
-        <input type="text">
-        <p>番号を「,」で区切ってください。</p>
-      </div>
-      <div>
-        速度 <input type="number"> 倍速
-      </div>
-      <ul>
-        <li><input type="radio" name="" id="">昇順再生（最初から再生）</li>
-        <li><input type="radio" name="" id="">降順再生（後ろから再生）</li>
-        <li><input type="radio" name="" id="">ランダム再生</li>
-      </ul>
-      <div>
-        <input type="checkbox" name="" id="">リピートする
-      </div>
-      <div class="button">
-        <button>完了</button>
-      </div>
+      <CommonPlaybackSettings pageName="initial" />
     </section>
   </main>
 </template>
