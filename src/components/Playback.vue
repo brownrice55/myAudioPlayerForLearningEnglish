@@ -1,38 +1,36 @@
 <script setup lang="ts">
-  import {ref} from "vue";
-  import ModalPlaybackHistory from '/src/components/ModalPlaybackHistory.vue';
-  import ModalPauseSettings from '/src/components/ModalPauseSettings.vue';
-  import CommonPathSettings from '/src/components/CommonPathSettings.vue';
-  import CommonPlaybackSettings from '/src/components/CommonPlaybackSettings.vue';
+  import {ref, inject} from "vue";
+  import PlaybackNormal from '/src/components/PlaybackNormal.vue';
+  import PlaybackHistory from '/src/components/PlaybackHistory.vue';
+  import type{ PathDataType } from '/src/interfaces';
+
+  const pathDataInject = inject('pathData') as Map<number, PathDataType>;
+  const pathData = ref(pathDataInject);
 
   const pageName = ref('playback');
-  const pageNameFromSelect = ref('');
 
   const selectPage = (aPage:string) => {
     pageName.value = aPage;
   };
 
-  const openModalFromSelect = (aName:string): void => {
-    let target = event.target;
-    if(target.value=='add') {
-      pageNameFromSelect.value = aName;
-      isModalOpen.value = !isModalOpen.value;
-      target.childNodes[0].selected = true;//「選択して下さい」に戻す
-    }
-  };
+  const src = ref('');
+  const currentPathData = ref('');
+  const fileName = ref('');
+  const sourceHTML = ref('');
 
-  // ** modal
-  const isModalOpen = ref(false);
-  const onOpenModal = (): void => {
-    isModalOpen.value = !isModalOpen.value;
-  };
-  const onCloseModal = (aIsModal:boolean) => {
-    isModalOpen.value = aIsModal;
-    if(pageNameFromSelect.value) {
-      pageNameFromSelect.value = '';
+  const onSetPath = (aId:number): void => {
+    currentPathData.value = pathData.value.get(aId);
+    src.value = '/data/' + currentPathData.value.folder + '/';
+    if(fileName.value) {
+      sourceHTML.value = '<video playsinline autoplay controls><source src="' + src.value + fileName.value + '" type="video/mp4"></video>';
     }
   };
-  // ** modal
+  const onSetNum = (aNumber:number): void => {
+    fileName.value = aNumber + '.mp3';
+    if(src.value) {
+      sourceHTML.value = '<video playsinline autoplay controls><source src="' + src.value + fileName.value + '" type="video/mp4"></video>';
+    }
+  };
 
 </script>
 <template>
@@ -47,114 +45,14 @@
     </ul>
   </nav>
   <template v-if="pageName==='playback'">
-    <main class="playback__main">
-      <dl>
-        <dt>パス</dt>
-        <dd>
-          <select @change="openModalFromSelect('path')">
-            <option value="">選択してください</option>
-            <option value="黒色の参考書のパス">黒色の参考書のパス</option>
-            <option value="add">パスを追加する</option>
-          </select>
-          <div v-if="isModalOpen && pageNameFromSelect==='path'" class="overlay">
-            <CommonPathSettings pageName="add" @closeModal="onCloseModal" />
-          </div>
-        </dd>
-      </dl>
-      <dl>
-        <dt>再生設定</dt>
-        <dd>
-          <select @change="openModalFromSelect('playback')">
-            <option value="">選択してください</option>
-            <option value="add">再生設定を追加する</option>
-          </select>
-          <div v-if="isModalOpen && pageNameFromSelect==='playback'" class="overlay">
-            <CommonPlaybackSettings pageName="add" @closeModal="onCloseModal" />
-          </div>
-        </dd>
-      </dl>
-      <div class="table">
-        <table>
-          <tr>
-            <th>再生番号</th>
-            <td>1〜100</td>
-          </tr>
-          <tr>
-            <th>現在再生中の問題の番号</th>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th>リピート再生</th>
-            <td>3/30回目</td>
-          </tr>
-          <tr>
-            <th>スピード</th>
-            <td>0.83倍速<br>0.01秒ずつ加速</td>
-          </tr>
-        </table>
-        <div class="button--small">
-          <button @click="onOpenModal()">編集</button>
-        </div>
-        <div v-if="isModalOpen && !pageNameFromSelect" class="overlay">
-          <CommonPlaybackSettings pageName="edit" @closeModal="onCloseModal" />
-        </div>
-      </div>
-      <div>
-        <dl>
-          <dt>
-            休止設定
-          </dt>
-          <dd>
-            <select @change="openModalFromSelect('pause')">
-              <option value="">ちょっと休む/3秒</option>
-              <option value="add">休止設定を設定する</option>
-            </select>
-            <div v-if="isModalOpen && pageNameFromSelect=='pause'" class="overlay">
-              <ModalPauseSettings @closeModal="onCloseModal" />
-            </div>
-          </dd>
-        </dl>
-      </div>
-    </main>
+    <PlaybackNormal @setPath="onSetPath" @setNum="onSetNum" />
   </template>
   <template v-else>
-    <main>
-      <div>
-        <span>前回（2/22）の履歴</span>
-        <div class="button--small">
-          <button @click="onOpenModal()">他の履歴を選択する</button>
-        </div>
-      </div>
-      <div v-if="isModalOpen && !pageNameFromSelect" class="overlay">
-        <ModalPlaybackHistory @closeModal="onCloseModal" />
-      </div>
-      <div class="table">
-        <table>
-          <tr>
-            <th>再生番号</th>
-            <td>2,13,30,41,50,61,65</td>
-          </tr>
-          <tr>
-            <th>現在再生中の問題の番号</th>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th>リピート再生</th>
-            <td>3/3回目</td>
-          </tr>
-          <tr>
-            <th>スピード</th>
-            <td>1倍速</td>
-          </tr>
-        </table>
-      </div>
-    </main>
+    <PlaybackHistory />
   </template>
   <section>
     <div>休止中：再開まで 1秒</div>
-    <video playsinline autoplay controls>
-      <source src="" type="video/mp4">
-    </video>
+    <div v-html="sourceHTML"></div>
     <div class="button">
       <button>もう1回</button>
     </div>

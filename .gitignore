@@ -42,6 +42,7 @@ vite.config.ts
 .vscode/extensions.json
 tsconfig.app.json
 index.html
+data/
 
 main.ts
 src/assets/_destyle.css

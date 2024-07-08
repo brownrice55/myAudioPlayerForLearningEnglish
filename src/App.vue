@@ -1,9 +1,10 @@
 <script setup lang="ts">
-  import {onMounted, ref} from "vue";
+  import {onMounted, provide, ref, reactive} from "vue";
   import InitialSettings from './components/InitialSettings.vue';
   import Playback from './components/Playback.vue';
   import PlaybackSettings from './components/PlaybackSettings.vue';
   import PathSettings from './components/PathSettings.vue';
+  import type { PathDataType, playbackDataType } from './interfaces';
 
   const pageName = ref('playback');
   const selectPage = (aPage:string) => {
@@ -12,10 +13,40 @@
 
   // ***data
   // パス設定と休止設定（一部）のデータ
+  let pathData = new Map<number, PathDataType>();
+  const pathDataJsonStr = localStorage.getItem('pathData');
+  if(pathDataJsonStr!=='undefined') {
+    const pathDataJson = JSON.parse(pathDataJsonStr);
+    pathData = new Map<number, PathDataType>(pathDataJson);
+  }
+  provide('pathData', reactive(pathData));
+
   // 再生設定のデータ
+  let playbackData = new Map<number, playbackDataType>();
+  const playbackDataJsonStr = localStorage.getItem('playbackData');
+  if(playbackDataJsonStr!=='undefined') {
+    const playbackDataJson = JSON.parse(playbackDataJsonStr);
+    playbackData = new Map<number, playbackDataType>(playbackDataJson);
+  }
+  provide('playbackData', reactive(playbackData));
   // 履歴のデータ
   // 休止設定のオプション（その他）のデータ
-  const isFirstTime = ref(false);//仮
+
+  let initialNumber = 1;
+
+  // start 仮
+  const isFirstTime = ref(true);
+  if(pathData.size && playbackData.size) {
+    isFirstTime.value = false;
+  }
+  else if(pathData.size) {
+    initialNumber = 3;
+  }
+
+  const setFirstTimeFalse = () => {
+    isFirstTime.value = false;
+  }
+  // end 仮
   // ***data
 
   onMounted(
@@ -33,7 +64,7 @@
 <template>
   <div class="container">
     <template v-if="isFirstTime">
-      <InitialSettings />
+      <InitialSettings @setInitialNumber="setFirstTimeFalse" :initialNumber="initialNumber" />
     </template>
     <template v-else>
       <header class="header">
