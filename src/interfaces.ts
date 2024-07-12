@@ -1,12 +1,11 @@
 export interface PathDataType {
   id: number;
-  name: string;
-  extension: string;
-  floderName: string;
-  useDigit: boolean;
+  settingsName: string;
+  folderName: string;
+  setDigit: boolean;
   digit: number;
-  filename1: string;
-  filename2: string;
+  fileNoBefore: string;
+  fileNoAfter: string;
 }
 
 export interface playbackDataType {
@@ -14,10 +13,13 @@ export interface playbackDataType {
   settingsNameType: string;
   settingsNameAuto: string,
   settingsNameCustom: string, 
-  settingsType: number,
-  settingsSpeed: number,
-  settingsOrder: number,
-  settingsRepetition: number,
-  number1: number;
-  number2: number;
+  numType: string,
+  numberStart: number;
+  numberEnd: number;
+  initialSpeed: number;
+  order: number;
+  setRepetition: boolean;
+  repetition: number;
+  setAcceleration: boolean;
+  acceleration: number;
 }

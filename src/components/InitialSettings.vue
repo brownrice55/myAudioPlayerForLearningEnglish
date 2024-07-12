@@ -21,14 +21,16 @@
     initialNumber.value = aInitialNumber + 1;
   }
 
-  const initialNav = ref(['音声データセット','パス設定','再生設定']);
+  const initialNav = ref(['音声データ配置','パス設定','再生設定']);
 
 </script>
 <template>
   <nav>
     <ul class="nav">
       <template v-for="(nav,index) in initialNav">
-        <li :class="(index+1)==initialNumber?'nav--active':''">{{ nav }}</li>
+        <li :class="(index+1)==initialNumber?'nav--active':'nav--inactive'">
+          <span>{{ nav }}</span>
+        </li>
       </template>
     </ul>
   </nav>
@@ -40,22 +42,47 @@
       </div>
     </section>
     <section v-else-if="initialNumber===2">
-      <CommonPathSettings pageName="initial" initialNumber="2" @clickNext="onClickNext(initialNumber)" />
+      <CommonPathSettings pageName="initial" @clickNext="onClickNext(initialNumber)" />
     </section>
     <section v-else>
-      <CommonPlaybackSettings pageName="initial" initialNumber="3" @clickNext="onClickNext(initialNumber)" />
+      <CommonPlaybackSettings pageName="initial" @clickNext="onClickNext(initialNumber)" />
     </section>
   </main>
 </template>
 <style lang="scss" scoped>
   @import '/src/assets/_color';
   .nav {
+    display: flex;
+    justify-content: space-between;
     li {
-      display: inline-block;
-      padding: 0 0 20px;
+      position: relative;
+      width: 100%;
+      height: 40px;
+      margin: 8px 20px 8px 0;
+      font-size: 14px;
+      line-height: 40px;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -20px;
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+      }
     }
     &--active {
+      color: $colorWhite;
       background: $colorKey;
+      &::after {
+        border-left: 20px solid $colorKey;
+      }
+    }
+    &--inactive {
+      color: $colorFont;
+      background: $colorLightGray;
+      &::after {
+        border-left: 20px solid $colorLightGray;
+      }
     }
   }
 </style>

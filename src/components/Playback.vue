@@ -20,7 +20,7 @@
 
   const onSetPath = (aId:number): void => {
     currentPathData.value = pathData.value.get(aId);
-    src.value = '/data/' + currentPathData.value.folder + '/';
+    src.value = '/data/' + currentPathData.value.folderName + '/';
     if(fileName.value) {
       sourceHTML.value = '<video playsinline autoplay controls><source src="' + src.value + fileName.value + '" type="video/mp4"></video>';
     }

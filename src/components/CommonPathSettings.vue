@@ -6,7 +6,6 @@
 
   interface Props {
     pageName: string;
-    initialNumber: number;
   }
 
   defineProps<Props>();
@@ -22,23 +21,26 @@
   };
 //** modal
 
-  const onClickNext = (aName, aFolder, aSetDigit, aDigit, aFilename1, aFilename2) => {
+  const onClickNext = (aSettingsName, aFolderName, aSetDigit, aDigit, aFileNoBefore, aFileNoAfter) => {
     let id = pathData.size + 1;
-    pathData.set(id, {id:id, name:aName, folder:aFolder, setDigit: aSetDigit, digit: aDigit, filename1:aFilename1, filename2:aFilename2});
+    pathData.set(id, {id:id, settingsName:aSettingsName, folderName:aFolderName, setDigit: aSetDigit, digit: aDigit, fileNoBefore:aFileNoBefore, fileNoAfter:aFileNoAfter});
     localStorage.setItem('pathData', JSON.stringify([...pathData]));
     emit('clickNext');
   };
 
-  const pathName = ref('');
-  const folder = ref('');
+  const settingsName = ref('');
+  const folderName = ref('');
   const digit = ref(2);
-  const filename1 = ref('');
-  const filename2 = ref('');
-  const filename = ref('1');
-  const path = ref('data/1.mp3');
+  const fileNoBefore = ref('');
+  const fileNoAfter = ref('');
+  const fileNo = ref('1');
+  const directoryPath = ref('data/');
+  const path = ref(directoryPath.value + fileNo.value + '.mp3');
   const setDigit = ref(false);
+  let option = [...Array(300)].map((_,cnt)=>cnt+1);
+  const optionArray = ref(option);
 
-  watch([folder,filename1,filename2,setDigit,digit], 
+  watch([folderName,fileNoBefore,fileNoAfter,setDigit,digit], 
     (): void => {
       let digitZero = '';
       if(setDigit.value) {
@@ -46,53 +48,72 @@
           digitZero += '0';
         }
       }
-      filename.value = (setDigit.value) ? (digitZero + '1').slice(-digit.value) : '1';
-      let folderName = (folder.value) ? folder.value + '/' : '';
-      path.value = '/data/' + folderName + filename1.value + filename.value + filename2.value + '.mp3';
+      fileNo.value = (setDigit.value) ? (digitZero + '1').slice(-digit.value) : '1';
+      let directoryPath2 = (folderName.value) ? folderName.value + '/' : '';
+      directoryPath.value = '/data/' + directoryPath2;
+      path.value = directoryPath.value + fileNoBefore.value + fileNo.value + fileNoAfter.value + '.mp3';
+
+      for(let cnt=0; cnt<300; ++cnt) {
+        optionArray.value[cnt] = (setDigit.value) ? (digitZero + String(cnt+1)).slice(-digit.value) : cnt+1;
+      };
     }
-  )
+  );
+
+  const video = ref('');
+  const onPlayback = ():void => {
+   video.value = '<video controls v-if="path" id="video"><source src="' + path.value + '" type="video/mp4"></video>';
+  };
+
 </script>
 <template>
   <div class="form">
-    <label for="">パス名</label>
-    <input type="text" v-model="pathName"><br>
+    パス名
+    <input type="text" v-model="settingsName"><br>
     <small>例）黒色の参考書のパス</small>
   </div>
   <div class="form">
-    拡張子
-    <select>
-      <option value=".mp3">.mp3</option>
-    </select>
     フォルダ名
-    <input type="text" v-model="folder">
+    <input type="text" v-model="folderName">
   </div>
   <div class="form">
     ファイル名<br>
-    <label><input type="checkbox" v-model="setDigit">桁数を揃える</label>
-    <div v-if="setDigit">
+    <div>
+      <small>※ファイル名の連番の前後に文字列がある場合は入力してください。</small>
+      <div class="form__input">
+        <input type="text" v-model="fileNoBefore">{{ fileNo }}<input type="text" v-model="fileNoAfter">
+        <div class="form__select">
+          <select>
+            <option value=".mp3">.mp3</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form__checkbox">
+      <input type="checkbox" id="checkboxDigit" v-model="setDigit">
+      <label for="checkboxDigit">連番の桁数を揃える</label>
+    </div>
+    <div v-if="setDigit" class="form__input">
       連番の桁数 <input type="number" v-model="digit">
     </div>
-    <div>
-      連番の前後の文字列
-      <input type="text" v-model="filename1">
-      {{ filename }}
-      <input type="text" v-model="filename2">
+  </div>
+  <div class="form">
+    <div class="form__input">
+      {{ directoryPath }}{{ fileNoBefore }}
+      <div class="form__select">
+        <select>
+          <template v-for="(n, i) in optionArray" :key="i">
+            <option :value="n">{{ n }}</option>
+          </template>
+        </select>
+      </div>{{ fileNoAfter }}
+      .mp3
     </div>
-  </div>
-  <div class="form">
-    {{ path }}
-  </div>
-  <div class="form">
-    <p>再生して、パスが合っているか確認する</p>
-  </div>
-  <div class="form">
-    <video controls v-if="path" id="video">
-      <source :src="path" type="video/mp4">
-    </video>
+    <button @click="onPlayback">再生して、上記のパスが合っているか確認する</button>
+    <div v-html="video"></div>
   </div>
   <!-- initial -->
   <div v-if="pageName==='initial'" class="button">
-    <button @click="onClickNext(pathName, folder, setDigit, digit, filename1, filename2)">次へ</button>
+    <button @click="onClickNext(settingsName, folderName, setDigit, digit, fileNoBefore, fileNoAfter)">次へ</button>
   </div>
   <!-- initial -->
   <!-- modalPathEdit -->

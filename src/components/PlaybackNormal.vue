@@ -33,7 +33,7 @@
     }
     else if(aName=='playback') {
       currentPlaybackData.value = playbackData.value.get(Math.trunc(target.value));
-      emit('setNum', currentPlaybackData.value.number1);
+      emit('setNum', currentPlaybackData.value.numberStart);
     }
     else {
       emit('setPath', Math.trunc(target.value));
@@ -62,7 +62,7 @@
       <dd>
         <select @change="openModalFromSelect('path')">
           <option value="">選択してください</option>
-          <option v-for="[id, data] in pathData" :key="id" :value="id">{{ data.name }}</option>
+          <option v-for="[id, data] in pathData" :key="id" :value="id">{{ data.settingsName }}</option>
           <option value="add">パスを追加する</option>
         </select>
         <div v-if="isModalOpen && pageNameFromSelect==='path'" class="overlay">
@@ -88,7 +88,7 @@
         <table>
           <tr>
             <th>再生番号</th>
-            <td>{{ currentPlaybackData.number1 }}〜{{ currentPlaybackData.number2 }}</td>
+            <td>{{ currentPlaybackData.numberStart }}〜{{ currentPlaybackData.numberEnd }}</td>
           </tr>
           <tr>
             <th>現在再生中の問題の番号</th>
@@ -96,11 +96,11 @@
           </tr>
           <tr>
             <th>リピート再生</th>
-            <td>3/30回目</td>
+            <td>1/{{ currentPlaybackData.repetition }}回目</td>
           </tr>
           <tr>
             <th>スピード</th>
-            <td>{{ currentPlaybackData.settingsSpeed }}倍速<br>0.01秒ずつ加速</td>
+            <td>{{ currentPlaybackData.initialSpeed }}倍速<br>{{ currentPlaybackData.acceleration }}秒ずつ加速</td>
           </tr>
         </table>
       </template>

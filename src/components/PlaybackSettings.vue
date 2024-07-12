@@ -25,7 +25,7 @@
     </li>
     <li>
       <input type="radio" id="radio2" name="radio_playbackSettings">
-      <label for="radio2">101-120 リピート30回 0.8倍速　徐々に速度を上げる</label>
+      <label for="radio2">101-120 リピート30回 0.8倍速 徐々に速度を上げる</label>
     </li>
   </ul>
   <div class="button">
