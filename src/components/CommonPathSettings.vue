@@ -22,8 +22,8 @@
 //** modal
 
   const onClickNext = () => {
-    if(!settingsName.value) {
-      alert.value = true;
+    if(!settingsName.value || setDigit.value && digit.value<0 || setDigit.value && !digit.value) {
+      showAlert();
       return;
     }
     let id = pathData.size + 1;
@@ -42,11 +42,22 @@
   const directoryPath = ref('data/');
   const path = ref(directoryPath.value + fileNo.value + '.mp3');
   const setDigit = ref(false);
-  let option = [...Array(300)].map((_,cnt)=>cnt+1);
+  let option = [...Array(300)].map((_,cnt)=>(cnt+1).toString());
   const optionArray = ref(option);
-  const alert = ref(false);
+  const alertArray = ref([false,false]);
 
-  watch([folderName,fileNoBefore,fileNoAfter,setDigit,digit], 
+  const showAlert = ():void => {
+    if(!settingsName.value) {
+      alertArray.value[0] = true;
+    }
+    if(setDigit.value) {
+      if(digit.value<0 || !digit.value) {
+        alertArray.value[1] = true;
+      }
+    }
+  };
+
+  watch([settingsName,folderName,fileNoBefore,fileNoAfter,setDigit,digit], 
     (): void => {
       let digitZero = '';
       if(setDigit.value) {
@@ -59,9 +70,19 @@
       directoryPath.value = '/data/' + directoryPath2;
       path.value = directoryPath.value + fileNoBefore.value + fileNo.value + fileNoAfter.value + '.mp3';
 
-      for(let cnt=0; cnt<300; ++cnt) {
-        optionArray.value[cnt] = (setDigit.value) ? (digitZero + String(cnt+1)).slice(-digit.value) : cnt+1;
-      };
+      alertArray.value = [false, false];
+      showAlert();
+      if(setDigit.value) {
+        optionArray.value = [];
+        let optionNum = '';
+        for(let cnt=0,len=(10**digit.value); cnt<len-1; ++cnt) {
+          optionNum = (setDigit.value) ? (digitZero + String(cnt+1)).slice(-digit.value) : (cnt+1).toString();
+          optionArray.value.push(optionNum);
+        };
+      }
+      else {
+        optionArray.value = [...Array(300)].map((_,cnt)=>(cnt+1).toString());
+      }
     }
   );
 
@@ -73,7 +94,7 @@
 </script>
 <template>
   <div class="form">
-    パス名<small v-if="alert" class="alert">※パス名を入力してください</small>
+    パス名<small v-if="alertArray[0]" class="alert">※パス名を入力してください</small>
     <input type="text" v-model="settingsName"><br>
     <small>例）黒色の参考書のパス</small>
   </div>
@@ -99,8 +120,9 @@
       <label for="checkboxDigit">連番の桁数を揃える</label>
     </div>
     <div v-if="setDigit" class="form__input">
-      連番の桁数 <input type="number" v-model="digit">
+      連番の桁数 <input type="number" v-model="digit" step="1" min="1" max="4">
     </div>
+    <small v-if="alertArray[1]" class="alert">※自然数を入力してください</small>
   </div>
   <div class="form">
     <div class="form__input">

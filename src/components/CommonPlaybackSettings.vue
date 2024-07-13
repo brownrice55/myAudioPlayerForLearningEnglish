@@ -22,7 +22,7 @@
 //** modal
 
   const onClickNext = ():void => {
-    if(settingsNameType.value=='custom' && !settingsNameCustom.value || !numberStart.value || !numberEnd.value || !initialSpeed.value || initialSpeed.value<=0) {
+    if(settingsNameType.value=='custom' && !settingsNameCustom.value || !numberStart.value || !numberEnd.value || !initialSpeed.value || initialSpeed.value<=0 || !repetition.value || repetition.value<2 || !Number.isInteger(repetition.value) || !acceleration.value || acceleration.value<=0) {
       showAlert();
       return;
     }
@@ -50,7 +50,7 @@
   const numberEnd = ref(100);
   const numberType2 = ref('1');
   const orderChecked = ref([true,false,false]);
-  const alertArray = ref([false,false,false,false,false]);
+  const alertArray = ref([false,false,false,false,false,false,false]);
 
   const showAlert = ():void => {
     if(settingsNameType.value=='custom') {
@@ -59,10 +59,17 @@
     alertArray.value[1] = ( !numberStart.value || numberStart.value<0 || !Number.isInteger(numberStart.value) ) ? true : false;
     alertArray.value[2] = ( !numberEnd.value || numberEnd.value<0 || !Number.isInteger(numberEnd.value) || numberEnd.value<=numberStart.value ) ? true : false;
     alertArray.value[3] = ( !numberType2.value ) ? true : false;
-    alertArray.value[4] = ( !initialSpeed.value || initialSpeed.value<0 ) ? true : false;
+    alertArray.value[4] = ( !initialSpeed.value || initialSpeed.value<=0 ) ? true : false;
+
+    if(setRepetition.value) {
+      alertArray.value[5] = ( !repetition.value || repetition.value<2 || !Number.isInteger(repetition.value) ) ? true : false;
+      if(setAcceleration.value) {
+        alertArray.value[6] = ( !acceleration.value || acceleration.value<=0 ) ? true : false;
+      }
+    }
   };
 
-  watch([settingsNameType,numType,numberStart,numberEnd,initialSpeed,order,setRepetition,setAcceleration,numberType2], 
+  watch([settingsNameType,numType,numberStart,numberEnd,initialSpeed,order,setRepetition,setAcceleration,numberType2,repetition,acceleration], 
     (): void => {
       if(!setRepetition.value) {
         setAcceleration.value = false;
@@ -111,14 +118,14 @@
     <div v-if="numType==='type1'" class="form__input">
       <div>
         <small>開始番号</small>
-        <input type="number" v-model="numberStart" step="1">
-        <small v-if="alertArray[1]" class="alert">※開始番号を自然数で入力してください</small>
+        <input type="number" v-model="numberStart" step="1" min="0">
+        <small v-if="alertArray[1]" class="alert">※開始番号を正の整数で入力してください</small>
       </div>
       <div>
         〜
       </div>
       <div>
-        <small>終了番号</small><br><input type="number" v-model="numberEnd" step="1">
+        <small>終了番号</small><br><input type="number" v-model="numberEnd" step="1" min="1">
         <small v-if="alertArray[2]" class="alert">※終了番号を開始番号より大きな整数で入力してください。</small>
       </div>
     </div>
@@ -132,7 +139,7 @@
     開始速度
     <div class="form__input">
       <div>
-        <input type="number" v-model="initialSpeed" step="0.01">
+        <input type="number" v-model="initialSpeed" step="0.01" min="0.01">
         <small v-if="alertArray[4]" class="alert">※0より大きい数値を入力してください</small>
       </div>
       <div>倍速</div>
@@ -158,7 +165,10 @@
         <div>
           <input type="number" v-model="repetition">
         </div>
-        <div>回繰り返し</div>
+        <div>
+          回繰り返し<br>
+          <small v-if="alertArray[5]" class="alert">※2以上の整数を入力してください</small>
+        </div>
       </div>
       <div class="form__checkbox">
         <input type="checkbox" name="setRepetition" v-model="setAcceleration" id="checkboxAcceleration">
@@ -169,7 +179,10 @@
           <div>
             <input type="number" v-model="acceleration" step="0.01">
           </div>
-          <div>秒ずつ加速</div>
+          <div>
+            秒ずつ加速<br>
+            <small v-if="alertArray[6]" class="alert">※0より大きい数値を入力してください</small>
+          </div>
         </div>
       </template>
     </template>
