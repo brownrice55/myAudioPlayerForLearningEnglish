@@ -21,9 +21,15 @@
   };
 //** modal
 
-  const onClickNext = (aSettingsNameType, aSettingsNameAuto, aSettingsNameCustom, aNumType, aInitialSpeed, aOrder, aSetRepetition, aRepetition, aSetAcceleration, aAcceleration, aNumberStart, aNumberEnd) => {
+  const onClickNext = ():void => {
+    if(settingsNameType.value=='custom' && !settingsNameCustom.value || !numberStart.value || !numberEnd.value || !initialSpeed.value || initialSpeed.value<=0) {
+      showAlert();
+      return;
+    }
     let id = playbackData.size + 1;
-    playbackData.set(id, {id:id, settingsNameType: aSettingsNameType, settingsNameAuto: aSettingsNameAuto, settingsNameCustom: aSettingsNameCustom, numType: aNumType, initialSpeed: aInitialSpeed, order: aOrder, setRepetition: aSetRepetition, repetition: aRepetition, setAcceleration: aSetAcceleration, acceleration: aAcceleration, numberStart:aNumberStart, numberEnd:aNumberEnd});
+    let numberType2Array = (numberType2.value) ? numberType2.value.split(',').filter(Boolean) : [];
+
+    playbackData.set(id, {id:id, settingsNameType:settingsNameType.value, settingsNameAuto:settingsNameAuto.value, settingsNameCustom:settingsNameCustom.value, numType:numType.value, initialSpeed:initialSpeed.value, order:order.value, setRepetition:setRepetition.value, repetition:repetition.value, setAcceleration:setAcceleration.value, acceleration:acceleration.value, numberStart:numberStart.value, numberEnd:numberEnd.value, numberType2:numberType2Array});
     localStorage.setItem('playbackData', JSON.stringify([...playbackData]));
     emit('clickNext');
   };
@@ -44,15 +50,28 @@
   const numberEnd = ref(100);
   const numberType2 = ref('1');
   const orderChecked = ref([true,false,false]);
+  const alertArray = ref([false,false,false,false,false]);
 
+  const showAlert = ():void => {
+    if(settingsNameType.value=='custom') {
+      alertArray.value[0] = (!settingsNameCustom.value) ? true : false;
+    }
+    alertArray.value[1] = ( !numberStart.value || numberStart.value<0 || !Number.isInteger(numberStart.value) ) ? true : false;
+    alertArray.value[2] = ( !numberEnd.value || numberEnd.value<0 || !Number.isInteger(numberEnd.value) || numberEnd.value<=numberStart.value ) ? true : false;
+    alertArray.value[3] = ( !numberType2.value ) ? true : false;
+    alertArray.value[4] = ( !initialSpeed.value || initialSpeed.value<0 ) ? true : false;
+  };
 
-  watch([numType,numberStart,numberEnd,initialSpeed,order,setRepetition,setAcceleration,numberType2], 
+  watch([settingsNameType,numType,numberStart,numberEnd,initialSpeed,order,setRepetition,setAcceleration,numberType2], 
     (): void => {
       if(!setRepetition.value) {
         setAcceleration.value = false;
       }
+      showAlert();
 
-      let number = (numType.value=='type1') ? numberStart.value + '〜' + numberEnd.value : numberType2.value;
+      numberType2.value = numberType2.value.replace(/[^0-9]/g, ',');
+      let number = (numType.value=='type1') ? numberStart.value + '〜' + numberEnd.value : numberType2.value.split(',').filter(Boolean).toString();
+
       let repetitionText = (setRepetition.value) ? '-' + repetition.value + '回繰り返し' : '';
       let accelerationText = (setAcceleration.value) ? '-' + acceleration.value + '秒ずつ加速' : '';
       settingsNameAuto.value = number + '番-開始' + initialSpeed.value + '秒-' 
@@ -71,8 +90,15 @@
       <label for="radioNameType2">カスタム</label>
     </div>
     <div class="form__cont">
-      <div v-if="settingsNameType==='auto'">{{ settingsNameAuto }}</div>
-      <div v-else><input type="text" v-model="settingsNameCustom"></div>
+      <template v-if="settingsNameType==='auto'">
+        {{ settingsNameAuto }}
+      </template>
+      <template v-else>
+        <div>
+          <input type="text" v-model="settingsNameCustom">
+        </div>
+        <small v-if="alertArray[0]" class="alert">※設定名を入力してください</small>
+      </template>
     </div>
   </div>
   <div class="form">
@@ -85,25 +111,29 @@
     <div v-if="numType==='type1'" class="form__input">
       <div>
         <small>開始番号</small>
-        <input type="number" v-model="numberStart">
+        <input type="number" v-model="numberStart" step="1">
+        <small v-if="alertArray[1]" class="alert">※開始番号を自然数で入力してください</small>
       </div>
       <div>
         〜
       </div>
       <div>
-        <small>終了番号</small><br><input type="number" v-model="numberEnd">
+        <small>終了番号</small><br><input type="number" v-model="numberEnd" step="1">
+        <small v-if="alertArray[2]" class="alert">※終了番号を開始番号より大きな整数で入力してください。</small>
       </div>
     </div>
     <div v-if="numType==='type2'">
       <input type="text" v-model="numberType2">
       <small>番号を「,」で区切ってください。</small>
+      <small v-if="alertArray[3]" class="alert">※番号を入力してください</small>
     </div>
   </div>
   <div class="form">
     開始速度
     <div class="form__input">
       <div>
-        <input type="number" v-model="initialSpeed" step="0.01"> 
+        <input type="number" v-model="initialSpeed" step="0.01">
+        <small v-if="alertArray[4]" class="alert">※0より大きい数値を入力してください</small>
       </div>
       <div>倍速</div>
     </div>
@@ -146,7 +176,7 @@
   </div>
   <!-- initial -->
   <div v-if="pageName==='initial'" class="button">
-    <button @click="onClickNext(settingsNameType, settingsNameAuto, settingsNameCustom, numType, initialSpeed, order, setRepetition, repetition, setAcceleration, acceleration, numberStart, numberEnd)">完了</button>
+    <button @click="onClickNext">完了</button>
   </div>
   <!-- initial -->
   <!-- modalPathEdit -->

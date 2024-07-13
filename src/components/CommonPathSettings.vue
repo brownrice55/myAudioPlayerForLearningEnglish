@@ -21,9 +21,13 @@
   };
 //** modal
 
-  const onClickNext = (aSettingsName, aFolderName, aSetDigit, aDigit, aFileNoBefore, aFileNoAfter) => {
+  const onClickNext = () => {
+    if(!settingsName.value) {
+      alert.value = true;
+      return;
+    }
     let id = pathData.size + 1;
-    pathData.set(id, {id:id, settingsName:aSettingsName, folderName:aFolderName, setDigit: aSetDigit, digit: aDigit, fileNoBefore:aFileNoBefore, fileNoAfter:aFileNoAfter});
+    pathData.set(id, {id:id, settingsName:settingsName.value, folderName:folderName.value, setDigit:setDigit.value, digit:digit.value, fileNoBefore:fileNoBefore.value, fileNoAfter:fileNoAfter.value});
     localStorage.setItem('pathData', JSON.stringify([...pathData]));
     emit('clickNext');
   };
@@ -34,11 +38,13 @@
   const fileNoBefore = ref('');
   const fileNoAfter = ref('');
   const fileNo = ref('1');
+  const extension = ref('.mp3');
   const directoryPath = ref('data/');
   const path = ref(directoryPath.value + fileNo.value + '.mp3');
   const setDigit = ref(false);
   let option = [...Array(300)].map((_,cnt)=>cnt+1);
   const optionArray = ref(option);
+  const alert = ref(false);
 
   watch([folderName,fileNoBefore,fileNoAfter,setDigit,digit], 
     (): void => {
@@ -67,7 +73,7 @@
 </script>
 <template>
   <div class="form">
-    パス名
+    パス名<small v-if="alert" class="alert">※パス名を入力してください</small>
     <input type="text" v-model="settingsName"><br>
     <small>例）黒色の参考書のパス</small>
   </div>
@@ -82,7 +88,7 @@
       <div class="form__input">
         <input type="text" v-model="fileNoBefore">{{ fileNo }}<input type="text" v-model="fileNoAfter">
         <div class="form__select">
-          <select>
+          <select v-model="extension">
             <option value=".mp3">.mp3</option>
           </select>
         </div>
@@ -106,14 +112,14 @@
           </template>
         </select>
       </div>{{ fileNoAfter }}
-      .mp3
+      {{ extension }}
     </div>
     <button @click="onPlayback">再生して、上記のパスが合っているか確認する</button>
     <div v-html="video"></div>
   </div>
   <!-- initial -->
   <div v-if="pageName==='initial'" class="button">
-    <button @click="onClickNext(settingsName, folderName, setDigit, digit, fileNoBefore, fileNoAfter)">次へ</button>
+    <button @click="onClickNext">次へ</button>
   </div>
   <!-- initial -->
   <!-- modalPathEdit -->

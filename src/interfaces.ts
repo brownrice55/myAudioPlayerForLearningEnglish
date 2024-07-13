@@ -4,6 +4,7 @@ export interface PathDataType {
   folderName: string;
   setDigit: boolean;
   digit: number;
+  extension: string;
   fileNoBefore: string;
   fileNoAfter: string;
 }
@@ -16,6 +17,7 @@ export interface playbackDataType {
   numType: string,
   numberStart: number;
   numberEnd: number;
+  numberType2Array: string;
   initialSpeed: number;
   order: number;
   setRepetition: boolean;
