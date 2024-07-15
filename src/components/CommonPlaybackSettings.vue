@@ -69,7 +69,7 @@
     }
   };
 
-  watch([settingsNameType,numType,numberStart,numberEnd,initialSpeed,order,setRepetition,setAcceleration,numberType2,repetition,acceleration], 
+  watch([settingsNameType,settingsNameCustom,numType,numberStart,numberEnd,initialSpeed,order,setRepetition,setAcceleration,numberType2,repetition,acceleration], 
     (): void => {
       if(!setRepetition.value) {
         setAcceleration.value = false;

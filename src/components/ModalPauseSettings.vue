@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 //** modal
-interface Emits {
+  interface Emits {
     (event: 'closeModal', isModalOpen:boolean): void;
   }
   const emit = defineEmits<Emits>();

@@ -9,7 +9,7 @@ export interface PathDataType {
   fileNoAfter: string;
 }
 
-export interface playbackDataType {
+export interface PlaybackDataType {
   id: number;
   settingsNameType: string;
   settingsNameAuto: string,
@@ -23,5 +23,14 @@ export interface playbackDataType {
   setRepetition: boolean;
   repetition: number;
   setAcceleration: boolean;
+  acceleration: number;
+}
+
+export interface HistoryDataType {
+  id: number;
+  date: string;
+  pathName: string;
+  noArray: any;
+  repetition: number;
   acceleration: number;
 }

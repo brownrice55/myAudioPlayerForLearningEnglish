@@ -14,11 +14,11 @@
   }
   const emit = defineEmits<Emits>();
 
-  const onClickNext = (aInitialNumber:number) => {
-    if(aInitialNumber===3) {
+  const onClickNext = ():void => {
+    if(initialNumber.value===3) {
       emit('setInitialNumber', 4);
     }
-    initialNumber.value = aInitialNumber + 1;
+    ++initialNumber.value;
   }
 
   const initialNav = ref(['音声データ配置','パス設定','再生設定']);
@@ -27,7 +27,7 @@
 <template>
   <nav>
     <ul class="nav">
-      <template v-for="(nav,index) in initialNav">
+      <template v-for="(nav,index) in initialNav" :key="index">
         <li :class="(index+1)==initialNumber?'nav--active':'nav--inactive'">
           <span>{{ nav }}</span>
         </li>
@@ -38,19 +38,19 @@
     <section v-if="initialNumber===1">
       <p>音声データをフォルダに入れて、dataフォルダ以下に配置してください。</p>
       <div class="button">
-        <button @click="onClickNext(initialNumber)">次へ</button>
+        <button @click="onClickNext">次へ</button>
       </div>
     </section>
     <section v-else-if="initialNumber===2">
-      <CommonPathSettings pageName="initial" @clickNext="onClickNext(initialNumber)" />
+      <CommonPathSettings pageName="initial" @clickNext="onClickNext" />
     </section>
     <section v-else>
-      <CommonPlaybackSettings pageName="initial" @clickNext="onClickNext(initialNumber)" />
+      <CommonPlaybackSettings pageName="initial" @clickNext="onClickNext" />
     </section>
   </main>
 </template>
 <style lang="scss" scoped>
-  @import '/src/assets/_color';
+  @import '/src/assets/_common';
   .nav {
     display: flex;
     justify-content: space-between;

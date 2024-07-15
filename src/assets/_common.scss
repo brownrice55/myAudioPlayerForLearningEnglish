@@ -1,0 +1,26 @@
+$colorFont: #666;
+$colorWhite: #fff;
+$colorLightGray: #eee;
+$colorDarkGray: #999;
+$colorKey: rgb(225, 166, 199);
+$colorKeyDark: rgb(227, 92, 175);
+
+
+@mixin btn {
+  button {
+    padding: 16px 40px;
+    margin: 16px 24px;
+    background: $colorKeyDark;
+    color: $colorWhite;
+  }
+}
+
+@mixin btnSmall {
+  button {
+    padding: 8px 24px;
+    margin: 0;
+    background: $colorFont;
+    color: $colorWhite;
+    font-size: rem(12px);
+  }
+}

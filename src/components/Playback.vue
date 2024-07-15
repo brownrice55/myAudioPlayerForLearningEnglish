@@ -2,10 +2,13 @@
   import {ref, inject} from "vue";
   import PlaybackNormal from '/src/components/PlaybackNormal.vue';
   import PlaybackHistory from '/src/components/PlaybackHistory.vue';
-  import type{ PathDataType } from '/src/interfaces';
+  import type{ PathDataType, HistoryDataType } from '/src/interfaces';
 
   const pathDataInject = inject('pathData') as Map<number, PathDataType>;
   const pathData = ref(pathDataInject);
+
+  const historyDataInject = inject('historyData') as Map<number, HistoryDataType>;
+  const historyData = ref(historyDataInject);
 
   const pageName = ref('playback');
 
@@ -22,19 +25,19 @@
     currentPathData.value = pathData.value.get(aId);
     src.value = '/data/' + currentPathData.value.folderName + '/';
     if(fileName.value) {
-      sourceHTML.value = '<video playsinline autoplay controls><source src="' + src.value + fileName.value + '" type="video/mp4"></video>';
+      sourceHTML.value = '<video playsinline controls><source src="' + src.value + fileName.value + '" type="video/mp4"></video>';
     }
   };
   const onSetNum = (aNumber:number): void => {
     fileName.value = aNumber + '.mp3';
     if(src.value) {
-      sourceHTML.value = '<video playsinline autoplay controls><source src="' + src.value + fileName.value + '" type="video/mp4"></video>';
+      sourceHTML.value = '<video playsinline controls><source src="' + src.value + fileName.value + '" type="video/mp4"></video>';
     }
   };
 
 </script>
 <template>
-  <nav class="playback__nav">
+  <nav class="playback__nav" v-if="historyData.size">
     <ul>
       <li @click="selectPage('playback')" :class="{active: pageName==='playback'}">
         設定を指定して再生
@@ -61,7 +64,7 @@
 </template>
 
 <style lang="scss" scoped>
-  @import '/src/assets/_color';
+  @import '/src/assets/_common';
   .playback {
     &__nav {
       li {
@@ -73,20 +76,6 @@
         }
       }
     }
-    main {
-      margin: 0 auto;
-      dt, dd {
-        display: inline-block;
-      }
-      .table {
-        background: #ccc;
-        padding: 16px 8px;
-        margin: 16px;
-        th, td {
-          text-align: left;
-          font-weight: normal;
-        }
-      }
-    }
   }
+
 </style>

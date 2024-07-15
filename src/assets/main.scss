@@ -1,6 +1,6 @@
 @use 'sass:math';
 @import '_destyle';
-@import '/src/assets/_color';
+@import '/src/assets/_common';
 
 
 @function rem($px) {
@@ -41,21 +41,7 @@ p {
 }
 
 .button {
-  button {
-    padding: 16px 40px;
-    margin: 16px 24px;
-    background: $colorKeyDark;
-    color: $colorWhite;
-  }
-  &--small {
-    button {
-      padding: 8px 24px;
-      margin: 8px 24px;
-      background: $colorFont;
-      color: $colorWhite;
-      font-size: rem(12px);
-    }
-  }
+  @include btn;
 }
 
 .form {
@@ -167,6 +153,33 @@ p {
   }
 }
 
+
+.playback {
+  &__select {
+    > div {
+      width: 100%;
+    }
+    &__btn {
+      @include btnSmall;
+    }
+  }
+  &__table {
+    background: $colorLightGray;
+    padding: 16px;
+    margin: 16px;
+    line-height: 1.6;
+    text-align: left;
+    position: relative;
+    &__btn {
+      position: absolute;
+      bottom: 16px;
+      right:16px;
+      @include btnSmall;
+    }
+  }
+}
+
+
 @media screen and (min-width: 601px) {
   .container {
     max-width: 600px;
@@ -177,6 +190,19 @@ p {
       li {
         display: inline-block;
         padding: 8px;
+      }
+    }
+  }
+  .playback {
+    &__select {
+      text-align: left;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: center;
+      > div {
+        width: 50%;
       }
     }
   }

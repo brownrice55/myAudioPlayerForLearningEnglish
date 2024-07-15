@@ -19,34 +19,35 @@
 </script>
 <template>
   <main>
-    <div>
-      <span>前回（2/22）の履歴</span>
-      <div class="button--small">
+    <div class="playback__select">
+      <div>
+        <span>前回（2/22）の履歴</span>
+      </div>
+      <div class="playback__select__btn">
         <button @click="onOpenModal()">他の履歴を選択する</button>
       </div>
     </div>
     <div v-if="isModalOpen && !pageNameFromSelect" class="overlay">
       <ModalPlaybackHistory @closeModal="onCloseModal" />
     </div>
-    <div class="table">
-      <table>
-        <tr>
-          <th>再生番号</th>
-          <td>2,13,30,41,50,61,65</td>
-        </tr>
-        <tr>
-          <th>現在再生中の問題の番号</th>
-          <td>1</td>
-        </tr>
-        <tr>
-          <th>リピート再生</th>
-          <td>3/3回目</td>
-        </tr>
-        <tr>
-          <th>スピード</th>
-          <td>1倍速</td>
-        </tr>
-      </table>
+    <div class="playback__table">
+      <ul>
+        <li>
+          パス名：黒色の参考書のパス
+        </li>
+        <li>
+          再生番号：2,13,30,41,50,61,65
+        </li>
+        <li>
+          現在再生中の問題の番号：1
+        </li>
+        <li>
+          リピート再生：3/3回目
+        </li>
+        <li>
+          スピード：1倍速
+        </li>
+      </ul>
     </div>
   </main>
 </template>

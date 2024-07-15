@@ -4,7 +4,7 @@
   import Playback from './components/Playback.vue';
   import PlaybackSettings from './components/PlaybackSettings.vue';
   import PathSettings from './components/PathSettings.vue';
-  import type { PathDataType, playbackDataType } from './interfaces';
+  import type { PathDataType, PlaybackDataType, HistoryDataType } from './interfaces';
 
   const pageName = ref('playback');
   const selectPage = (aPage:string) => {
@@ -22,17 +22,27 @@
   provide('pathData', reactive(pathData));
 
   // 再生設定のデータ
-  let playbackData = new Map<number, playbackDataType>();
+  let playbackData = new Map<number, PlaybackDataType>();
   const playbackDataJsonStr = localStorage.getItem('playbackData');
   if(playbackDataJsonStr!=='undefined') {
     const playbackDataJson = JSON.parse(playbackDataJsonStr);
     playbackData = new Map<number, playbackDataType>(playbackDataJson);
   }
   provide('playbackData', reactive(playbackData));
+
   // 履歴のデータ
+  let historyData = new Map<number, HistoryDataType>();
+  const historyDataJsonStr = localStorage.getItem('historyData');
+  if(historyDataJsonStr!=='undefined') {
+    const historyDataJson = JSON.parse(historyDataJsonStr);
+    historyData = new Map<number, historyDataType>(historyDataJson);
+  }
+  provide('historyData', reactive(historyData));
+  
+  
   // 休止設定のオプション（その他）のデータ
 
-  let initialNumber = 1;
+  const initialNumber = ref(1);
 
   // start 仮
   const isFirstTime = ref(true);
@@ -40,7 +50,7 @@
     isFirstTime.value = false;
   }
   else if(pathData.size) {
-    initialNumber = 3;
+    initialNumber.value = 3;
   }
 
   const setFirstTimeFalse = () => {
