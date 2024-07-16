@@ -1,19 +1,21 @@
 <script setup lang="ts">
-  import {ref, inject,watch} from "vue";
+  import {ref, inject, watch, onMounted} from "vue";
   import type{ PlaybackDataType } from '/src/interfaces';
 
   const playbackData = inject('playbackData') as Map<number, PlaybackDataType>;
 
   interface Props {
     pageName: string;
+    currentPlaybackData: any;
   }
   
-  defineProps<Props>();
+  const props = defineProps<Props>();
 
 //** modal
   interface Emits {
     (event: 'closeModal', isModalOpen:boolean): void;
     (event: 'clickNext'): void;
+    (event: 'saveData', isModalOpen:boolean, id:number): void;
   }
   const emit = defineEmits<Emits>();
   const onCloseModal = () => {
@@ -21,17 +23,25 @@
   };
 //** modal
 
-  const onClickNext = ():void => {
+  const saveData = (aId:number):void => {
     if(settingsNameType.value=='custom' && !settingsNameCustom.value || !numberStart.value || !numberEnd.value || !initialSpeed.value || initialSpeed.value<=0 || !repetition.value || repetition.value<2 || !Number.isInteger(repetition.value) || !acceleration.value || acceleration.value<=0) {
       showAlert();
       return;
     }
-    let id = playbackData.size + 1;
     let numberType2Array = (numberType2.value) ? numberType2.value.split(',').filter(Boolean) : [];
-
-    playbackData.set(id, {id:id, settingsNameType:settingsNameType.value, settingsNameAuto:settingsNameAuto.value, settingsNameCustom:settingsNameCustom.value, numType:numType.value, initialSpeed:initialSpeed.value, order:order.value, setRepetition:setRepetition.value, repetition:repetition.value, setAcceleration:setAcceleration.value, acceleration:acceleration.value, numberStart:numberStart.value, numberEnd:numberEnd.value, numberType2:numberType2Array});
+    playbackData.set(aId, {id:aId, settingsNameType:settingsNameType.value, settingsNameAuto:settingsNameAuto.value, settingsNameCustom:settingsNameCustom.value, numType:numType.value, initialSpeed:initialSpeed.value, order:order.value, setRepetition:setRepetition.value, repetition:repetition.value, setAcceleration:setAcceleration.value, acceleration:acceleration.value, numberStart:numberStart.value, numberEnd:numberEnd.value, numberType2:numberType2Array});
     localStorage.setItem('playbackData', JSON.stringify([...playbackData]));
+  };
+
+  const onClickNext = ():void => {
+    let id = playbackData.size + 1;
+    saveData(id);
     emit('clickNext');
+  };
+
+  const onSaveEditData = ():void => {
+    saveData(props.currentPlaybackData.id);
+    emit('saveData', false, props.currentPlaybackData.id);
   };
 
   const settingsNameType = ref('auto');
@@ -83,6 +93,25 @@
       let accelerationText = (setAcceleration.value) ? '-' + acceleration.value + '秒ずつ加速' : '';
       settingsNameAuto.value = number + '番-開始' + initialSpeed.value + '秒-' 
                             + orderJpArray[order.value-1] + repetitionText +  accelerationText;
+    }
+  );
+
+  onMounted(
+    (): void => {
+      if(props.pageName=='edit') {
+        settingsNameType.value = props.currentPlaybackData.settingsNameType;
+        settingsNameCustom.value = props.currentPlaybackData.settingsNameCustom;
+        numType.value = props.currentPlaybackData.numType;
+        initialSpeed.value = props.currentPlaybackData.initialSpeed;
+        order.value = props.currentPlaybackData.order;
+        setRepetition.value = props.currentPlaybackData.setRepetition;
+        repetition.value = props.currentPlaybackData.repetition;
+        setAcceleration.value = props.currentPlaybackData.setAcceleration;
+        acceleration.value = props.currentPlaybackData.acceleration;
+        numberStart.value = props.currentPlaybackData.numberStart;
+        numberEnd.value = props.currentPlaybackData.numberEnd;
+        numberType2.value = props.currentPlaybackData.numberType2.toString();
+      }
     }
   );
 
@@ -195,7 +224,7 @@
   <!-- modalPathEdit -->
   <div v-else-if="pageName==='edit'" class="button">
     <button @click="onCloseModal">キャンセル</button>
-    <button>保存</button>
+    <button @click="onSaveEditData">保存</button>
   </div>
   <!-- modalPathEdit -->
   <!-- modalPathAdd -->

@@ -53,6 +53,10 @@
   };
   // ** modal
 
+  const onSaveData = (aIsModal:boolean, aId:number) => {
+    onCloseModal(aIsModal);
+    currentPlaybackData.value = playbackData.value.get(aId);
+  }
 
 </script>
 <template>
@@ -95,12 +99,12 @@
         現在再生中の問題の番号：1
       </li>
       <li>
-        リピート再生：1/{{ currentPlaybackData.repetition }}回目
-      </li>
-      <li>
         スピード：{{ currentPlaybackData.initialSpeed }}倍速
       </li>
-      <li>
+      <li v-if="currentPlaybackData.setRepetition">
+        リピート再生：1/{{ currentPlaybackData.repetition }}回目
+      </li>
+      <li v-if="currentPlaybackData.setAcceleration">
         {{ currentPlaybackData.acceleration }}秒ずつ加速
       </li>
     </ul>
@@ -109,7 +113,7 @@
     </div>
   </div>
   <div v-if="isModalOpen && !pageNameFromSelect" class="overlay">
-    <CommonPlaybackSettings pageName="edit" @closeModal="onCloseModal" />
+    <CommonPlaybackSettings pageName="edit" :currentPlaybackData="currentPlaybackData" @closeModal="onCloseModal" @saveData="onSaveData" />
   </div>
   <div>
     休止設定<br>

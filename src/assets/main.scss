@@ -38,6 +38,9 @@ p {
   text-align: center;
   z-index: 20;
   color: #fff;
+  input {
+    color: $colorFont;
+  }
 }
 
 .button {
