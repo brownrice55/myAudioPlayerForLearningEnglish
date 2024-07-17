@@ -1,16 +1,11 @@
-@use 'sass:math';
 @import '_destyle';
 @import '/src/assets/_common';
-
-
-@function rem($px) {
-  @return math.div($px, 16px) * 1rem;
-}
 
 body {
   color: $colorFont;
   text-align: center;
-  margin: auto
+  margin: auto;
+  font-size: rem(16px);
 }
 table {
   margin: auto;

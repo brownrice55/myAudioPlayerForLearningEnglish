@@ -1,0 +1,131 @@
+<script setup lang="ts">
+  import {ref, inject} from "vue";
+  import CommonPlaybackSettings from '/src/components/CommonPlaybackSettings.vue';
+  import CommonPathSettings from '/src/components/CommonPathSettings.vue';
+  import type{ PathDataType, PlaybackDataType } from '/src/interfaces';
+
+  interface Props {
+    settingsName: string;
+  }
+  const props = defineProps<Props>();
+
+  const pathDataInject = inject('pathData') as Map<number, PathDataType>;
+  const pathData = ref(pathDataInject);
+
+  const playbackDataInject = inject('playbackData') as Map<number, PlaybackDataType>;
+  const playbackData = ref(playbackDataInject);
+
+  const settingsNameJp = ref((props.settingsName=='playbackSettings') ? '再生設定' : 'パス設定');
+  const settingsData = (props.settingsName=='playbackSettings') ? playbackData : pathData;
+
+  const settingsRadioId = ref(0);
+
+  // ** modal
+  const isModalOpen = ref(false);
+  const modalName = ref('');
+  const onOpenModal = (aModalName:string): void => {
+    isModalOpen.value = !isModalOpen.value;
+    modalName.value = aModalName;
+  };
+  const onCloseModal = (aIsModal:boolean) => {
+    isModalOpen.value = aIsModal;
+  };
+  // ** modal
+
+</script>
+<template>
+  <div class="settings">
+    <div class="settings__title">
+      {{ settingsNameJp }}
+    </div>
+    <p>使用する設定を選択して、編集、または追加を押してください。</p>
+    <ul class="settings__list">
+      <li v-for="[id, data] in settingsData" :key="id">
+        <input type="radio" :id="'radio' + id" name="radio" v-model="settingsRadioId" :value="id">
+        <label :for="'radio' + id">
+          <template v-if="props.settingsName=='playbackSettings'">
+            {{ data.settingsNameType=='auto' ? data.settingsNameAuto : data.settingsNameCustom }}
+          </template>
+          <template v-else>
+            {{ data.settingsName }}
+          </template>
+        </label>
+      </li>
+    </ul>
+
+    <div class="settings__btn">
+      <button @click="onOpenModal('edit')">編集</button>
+      <div v-if="isModalOpen && modalName=='edit'" class="overlay">
+        <div>{{ settingsNameJp }} 編集</div>
+        <template v-if="settingsName=='playbackSettings'">
+          <CommonPlaybackSettings pageName="edit" @closeModal="onCloseModal" :currentPlaybackData="settingsData.get(settingsRadioId)" />
+        </template>
+        <template v-else>
+          <CommonPathSettings pageName="edit" @closeModal="onCloseModal" :currentPathData="settingsData.get(settingsRadioId)" />
+        </template>
+      </div>
+      <button>削除</button>
+    </div>
+
+    <div class="settings__btn">
+      <button @click="onOpenModal('add')">新規追加</button>
+      <div v-if="isModalOpen && modalName=='add'" class="overlay">
+        <div>{{ settingsNameJp }} 新規追加</div>
+        <template v-if="settingsName=='playbackSettings'">
+          <CommonPlaybackSettings pageName="add" @closeModal="onCloseModal" />
+        </template>
+        <template v-else>
+          <CommonPathSettings pageName="add" @closeModal="onCloseModal" />
+        </template>
+      </div>
+    </div>
+
+  </div>
+</template>
+
+<style lang="scss" scoped>
+  @import '/src/assets/_common';
+  .settings {
+    &__title {
+      padding: 10px;
+      font-size: rem(18px);
+    }
+    &__list {
+      margin: 40px 0;
+      line-height: 2;
+      text-align: left;
+      li {
+        display: flex;
+        input {
+          + label {
+            display: flex;
+            align-items: center;
+            &:before {
+              content: '';
+              background: $colorWhite;
+              border-radius: 100%;
+              border: 2px solid $colorFont;
+              display: block;
+              width: 24px;
+              height: 24px;
+              margin: 0 8px 0 0;
+              padding: 0;
+              cursor: pointer;
+            }
+          }
+          &:checked {
+            + label {
+              &:before {
+                background: $colorFont;
+                box-shadow: inset 0 0 0 4px $colorWhite;
+              }
+            }
+          }
+        }
+      }
+    }
+    &__btn {
+      @include btn;
+    }
+  }
+</style>

@@ -2,8 +2,7 @@
   import {onMounted, provide, ref, reactive} from "vue";
   import InitialSettings from './components/InitialSettings.vue';
   import Playback from './components/Playback.vue';
-  import PlaybackSettings from './components/PlaybackSettings.vue';
-  import PathSettings from './components/PathSettings.vue';
+  import CommonSettingsIndex from './components/CommonSettingsIndex.vue';
   import type { PathDataType, PlaybackDataType, HistoryDataType } from './interfaces';
 
   const pageName = ref('playback');
@@ -80,19 +79,19 @@
       <header class="header">
         <ul class="header__nav">
           <li @click="selectPage('playback')">再生</li>
-          <li @click="selectPage('playbackSettings')">再生設定</li>
           <li @click="selectPage('pathSettings')">パス設定</li>
+          <li @click="selectPage('playbackSettings')">再生設定</li>
         </ul>
       </header>
       <main>
         <section class="playback" v-if="pageName==='playback'">
           <Playback />
         </section>
-        <section class="playbackSettings" v-else-if="pageName==='playbackSettings'">
-          <PlaybackSettings />
+        <section class="settings" v-else-if="pageName==='pathSettings'">
+          <CommonSettingsIndex settingsName="pathSettings" />
         </section>
-        <section v-else-if="pageName==='pathSettings'">
-          <PathSettings />
+        <section class="settings" v-else-if="pageName==='playbackSettings'">
+          <CommonSettingsIndex settingsName="playbackSettings" />
         </section>
       </main>
     </template>

@@ -5,6 +5,10 @@ $colorDarkGray: #999;
 $colorKey: rgb(225, 166, 199);
 $colorKeyDark: rgb(227, 92, 175);
 
+@use 'sass:math';
+@function rem($px) {
+  @return math.div($px, 16px) * 1rem;
+}
 
 @mixin btn {
   button {
