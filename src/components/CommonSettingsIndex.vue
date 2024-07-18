@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import {ref, inject} from "vue";
+  import {ref, inject, watch} from "vue";
   import CommonPlaybackSettings from '/src/components/CommonPlaybackSettings.vue';
   import CommonPathSettings from '/src/components/CommonPathSettings.vue';
   import type{ PathDataType, PlaybackDataType } from '/src/interfaces';
@@ -19,18 +19,32 @@
   const settingsData = (props.settingsName=='playbackSettings') ? playbackData : pathData;
 
   const settingsRadioId = ref(0);
+  const alert = ref(false);
 
   // ** modal
   const isModalOpen = ref(false);
   const modalName = ref('');
   const onOpenModal = (aModalName:string): void => {
+    if(!settingsRadioId.value) {
+      alert.value = true;
+      return;
+    }
+    alert.value = false;
     isModalOpen.value = !isModalOpen.value;
     modalName.value = aModalName;
   };
-  const onCloseModal = (aIsModal:boolean) => {
+  const onCloseModal = (aIsModal:boolean):void => {
     isModalOpen.value = aIsModal;
   };
   // ** modal
+
+  watch([settingsRadioId], 
+    (): void => {
+      if(settingsRadioId.value) {
+        alert.value = false;
+      }
+    }
+  );
 
 </script>
 <template>
@@ -52,6 +66,7 @@
         </label>
       </li>
     </ul>
+    <p v-if="alert">選択してください。</p>
 
     <div class="settings__btn">
       <button @click="onOpenModal('edit')">編集</button>

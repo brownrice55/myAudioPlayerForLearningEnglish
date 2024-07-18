@@ -8,7 +8,6 @@
     pageName: string;
     currentPlaybackData: any;
   }
-  
   const props = defineProps<Props>();
 
 //** modal
@@ -18,7 +17,7 @@
     (event: 'saveData', isModalOpen:boolean, id:number): void;
   }
   const emit = defineEmits<Emits>();
-  const onCloseModal = () => {
+  const onCloseModal = ():void => {
     emit('closeModal', false);
   };
 //** modal
@@ -42,6 +41,7 @@
   const onSaveEditData = ():void => {
     saveData(props.currentPlaybackData.id);
     emit('saveData', false, props.currentPlaybackData.id);
+    emit('closeModal', false);
   };
 
   const settingsNameType = ref('auto');

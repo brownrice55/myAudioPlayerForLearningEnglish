@@ -1,36 +1,27 @@
 <script setup lang="ts">
-  import {ref, watch, inject} from "vue";
+  import {ref, watch, inject, onMounted} from "vue";
   import type{ PathDataType } from '/src/interfaces';
 
   const pathData = inject('pathData') as Map<number, PathDataType>;
 
   interface Props {
     pageName: string;
+    currentPathData: any;
   }
 
-  defineProps<Props>();
+  const props = defineProps<Props>();
 
 //** modal
   interface Emits {
     (event: 'closeModal', isModalOpen:boolean): void;
     (event: 'clickNext'): void;
+    (event: 'saveData', isModalOpen:boolean, id:number): void;
   }
   const emit = defineEmits<Emits>();
-  const onCloseModal = () => {
+  const onCloseModal = ():void => {
     emit('closeModal', false);
   };
 //** modal
-
-  const onClickNext = () => {
-    if(!settingsName.value || setDigit.value && digit.value<0 || setDigit.value && !digit.value) {
-      showAlert();
-      return;
-    }
-    let id = pathData.size + 1;
-    pathData.set(id, {id:id, settingsName:settingsName.value, folderName:folderName.value, setDigit:setDigit.value, digit:digit.value, fileNoBefore:fileNoBefore.value, fileNoAfter:fileNoAfter.value});
-    localStorage.setItem('pathData', JSON.stringify([...pathData]));
-    emit('clickNext');
-  };
 
   const settingsName = ref('');
   const folderName = ref('');
@@ -91,6 +82,41 @@
    video.value = '<video controls v-if="path" id="video"><source src="' + path.value + '" type="video/mp4"></video>';
   };
 
+  onMounted(
+    (): void => {
+      if(props.pageName=='edit') {
+        settingsName.value = props.currentPathData.settingsName;
+        folderName.value = props.currentPathData.folderName;
+        setDigit.value = props.currentPathData.setDigit;
+        digit.value = props.currentPathData.digit;
+        extension.value = props.currentPathData.extension;
+        fileNoBefore.value = props.currentPathData.fileNoBefore;
+        fileNoAfter.value = props.currentPathData.fileNoAfter;
+      }
+    }
+  );
+
+  const saveData = (aId:number):void => {
+    pathData.set(aId, {id:aId, settingsName:settingsName.value, folderName:folderName.value, setDigit:setDigit.value, digit:digit.value, fileNoBefore:fileNoBefore.value, fileNoAfter:fileNoAfter.value});
+    localStorage.setItem('pathData', JSON.stringify([...pathData]));
+  };
+
+  const onClickNext = ():void => {
+    if(!settingsName.value || setDigit.value && digit.value<0 || setDigit.value && !digit.value) {
+      showAlert();
+      return;
+    }
+    let id = pathData.size + 1;
+    saveData(id);
+    emit('clickNext');
+  };
+
+  const onSaveEditData = ():void => {
+    saveData(props.currentPathData.id);
+    emit('saveData', false, props.currentPathData.id);
+    emit('closeModal', false);
+  };
+
 </script>
 <template>
   <div class="form">
@@ -147,7 +173,7 @@
   <!-- modalPathEdit -->
   <div v-else-if="pageName==='edit'" class="button">
     <button @click="onCloseModal">キャンセル</button>
-    <button>保存</button>
+    <button @click="onSaveEditData">保存</button>
   </div>
   <!-- modalPathEdit -->
   <!-- modalPathAdd -->
