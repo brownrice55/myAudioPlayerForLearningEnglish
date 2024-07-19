@@ -17,6 +17,7 @@
 
   const settingsNameJp = ref((props.settingsName=='playbackSettings') ? '再生設定' : 'パス設定');
   const settingsData = (props.settingsName=='playbackSettings') ? playbackData : pathData;
+  const settingsDataName = ref((props.settingsName=='playbackSettings') ? 'playbackData' : 'pathData');
 
   const settingsRadioId = ref(0);
   const alert = ref(false);
@@ -25,7 +26,7 @@
   const isModalOpen = ref(false);
   const modalName = ref('');
   const onOpenModal = (aModalName:string): void => {
-    if(!settingsRadioId.value) {
+    if(!settingsRadioId.value && aModalName=='edit') {
       alert.value = true;
       return;
     }
@@ -37,6 +38,17 @@
     isModalOpen.value = aIsModal;
   };
   // ** modal
+
+  const onDelete = (aModalName:string):void => {
+    if(!settingsRadioId.value && aModalName=='delete') {
+      alert.value = true;
+      return;
+    }
+    alert.value = false;
+    settingsData.value.delete(settingsRadioId.value);
+    localStorage.setItem(settingsDataName.value, JSON.stringify([...settingsData.value]));
+    settingsRadioId.value = 0;
+  };
 
   watch([settingsRadioId], 
     (): void => {
@@ -79,7 +91,7 @@
           <CommonPathSettings pageName="edit" @closeModal="onCloseModal" :currentPathData="settingsData.get(settingsRadioId)" />
         </template>
       </div>
-      <button>削除</button>
+      <button @click="onDelete('delete')">削除</button>
     </div>
 
     <div class="settings__btn">

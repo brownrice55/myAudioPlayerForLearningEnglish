@@ -44,6 +44,13 @@
     emit('closeModal', false);
   };
 
+  const onSaveAddData = ():void => {
+    let newId = playbackData.size + 1;
+    saveData(newId);
+    emit('saveData', false, newId);
+    emit('closeModal', false);
+  };
+
   const settingsNameType = ref('auto');
   const settingsNameAuto = ref('1〜100番-開始0.75秒-昇順再生');
   const settingsNameCustom = ref('');
@@ -230,7 +237,7 @@
   <!-- modalPathAdd -->
   <div v-else-if="pageName==='add'" class="button">
     <button @click="onCloseModal">キャンセル</button>
-    <button>保存</button>
+    <button @click="onSaveAddData">保存</button>
   </div>
   <!-- modalPathAdd -->
 </template>

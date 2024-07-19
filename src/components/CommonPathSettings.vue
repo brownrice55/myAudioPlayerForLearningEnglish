@@ -117,6 +117,13 @@
     emit('closeModal', false);
   };
 
+  const onSaveAddData = ():void => {
+    let newId = pathData.size + 1;
+    saveData(newId);
+    emit('saveData', false, newId);
+    emit('closeModal', false);
+  };
+
 </script>
 <template>
   <div class="form">
@@ -179,7 +186,7 @@
   <!-- modalPathAdd -->
   <div v-else-if="pageName==='add'" class="button">
     <button @click="onCloseModal">キャンセル</button>
-    <button>保存</button>
+    <button @click="onSaveAddData">保存</button>
   </div>
   <!-- modalPathAdd -->
 </template>
