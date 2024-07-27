@@ -48,6 +48,20 @@
     settingsData.value.delete(settingsRadioId.value);
     localStorage.setItem(settingsDataName.value, JSON.stringify([...settingsData.value]));
     settingsRadioId.value = 0;
+
+    let tempData = (props.settingsName=='playbackSettings') ? new Map<number, PlaybackDataType>() : new Map<number, PathDataType>();
+    let cnt = 0;
+    settingsData.value.forEach((value) => {
+      if(props.settingsName=='playbackSettings') {
+        tempData.set((cnt+1), {id:(cnt+1), settingsNameType:value.settingsNameType, settingsNameAuto:value.settingsNameAuto, settingsNameCustom:value.settingsNameCustom, numType:value.numType, initialSpeed:value.initialSpeed, order:value.order, setRepetition:value.setRepetition, repetition:value.repetition, setAcceleration:value.setAcceleration, acceleration:value.acceleration, numberStart:value.numberStart, numberEnd:value.numberEnd, numberType2:value.numberType2Array});
+      }
+      else {
+        tempData.set((cnt+1), {id:(cnt+1), settingsName:value.settingsName, folderName:value.folderName, setDigit:value.setDigit, digit:value.digit, fileNoBefore:value.fileNoBefore, fileNoAfter:value.fileNoAfter});
+      }
+      cnt++;
+    });
+
+    localStorage.setItem(settingsDataName.value, JSON.stringify([...tempData]));
   };
 
   watch([settingsRadioId], 
