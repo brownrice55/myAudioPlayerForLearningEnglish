@@ -1,3 +1,7 @@
+<p>2025/5/11追記<br>最初の想定、設計が上手くできておらず、途中で実装を止めています。また最初からやり直す予定です。</p>
+<p>簡易版はこちらにあります→　https://github.com/brownrice55/myAudioPlayerForLearningEnglish-practice</p>
+<hr>
+
 <p>I am creating this program to enhance my programming skills and pursue my hobbies. Furthermore, this program is incomplete, and I am uncertain about my programming skills.</p>
 <p>このプログラムは個人の趣味で自分のプログラムの勉強のために書いています。 また、未完成ですし、自分のプログラミングスキルにも自信が持てない状態です。</p>
 
